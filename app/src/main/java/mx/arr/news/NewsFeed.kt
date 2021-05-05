@@ -35,14 +35,15 @@ class NewsFeed : AppCompatActivity() {
 
 
         val request = ServiceBuilder.buildService(JsonApi::class.java)
-        val call = request.getNoticias(getString(R.string.api_key))
+        val call = request.getNoticias()
         call.enqueue(object : Callback<ListaNoticias>{
             override fun onResponse(call: Call<ListaNoticias>, response: Response<ListaNoticias>) {
-                if (response.isSuccessful){
+                if (response.code() == 200){
                     rvNoticias.apply {
                         setHasFixedSize(true)
                         layoutManager = LinearLayoutManager(this@NewsFeed)
-                        adaptador = Adaptador(response.body()!!.results)
+                        var newsResponse = response.body()!!
+                        adaptador = Adaptador(newsResponse.results)
                     }
                 }
             }

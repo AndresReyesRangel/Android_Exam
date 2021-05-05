@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import mx.arr.news.model.Result
 
 // Administra la info. que se muestra en el Recycler View
-class Adaptador(val noticias: List<Result>) :
+class Adaptador(private val noticias: List<Result>) :
     RecyclerView.Adapter<Adaptador.VistaRenglon>(){
 
     //Crear un renglon
